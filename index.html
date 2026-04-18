@@ -17,8 +17,8 @@
         .btn-green { background: #28a745; }
         .btn-blue { background: #0088cc; }
         .btn-phone { background: #1a73e8; }
-        .check-item { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-top: 5px; }
-        .check-item input { margin: 0; scale: 1.1; }
+        .check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; margin-top: 4px; line-height: 1.2; }
+        .check-item input { margin-top: 2px; scale: 1.1; }
         .info-text { font-size: 12px; color: #333; line-height: 1.3; }
         .highlight { color: #d93025; font-weight: bold; }
     </style>
@@ -28,11 +28,11 @@
 <div class="container">
     <div class="emergency-box">
         <h4 style="margin:0; font-size:14px;">🚨 DTP BO'LDIMI?</h4>
-        <p style="font-size: 12px; margin: 3px 0;">GAIga murojaat qilishdan oldin bizga yozing!</p>
+        <p style="font-size: 12px; margin: 3px 0; font-weight: bold;">GAIga murojaat qilishdan oldin bizga yozing!</p>
     </div>
 
     <div class="section">
-        <h3>1. Kalkulyator</h3>
+        <h3>1. Sug'urta Kalkulyatori</h3>
         <select id="carType" onchange="calc()">
             <option value="yengil">Yengil avtomobil</option>
             <option value="yuk">Yuk avtomobili</option>
@@ -44,28 +44,29 @@
             <option value="viloyat">Boshqa viloyatlar</option>
         </select>
         <select id="policyType" style="margin-top:5px;" onchange="calc()">
-            <option value="limited">Cheklangan</option>
+            <option value="limited">Cheklangan (5 kishi)</option>
             <option value="unlimited">VIP (Cheklanmagan)</option>
         </select>
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
     <div class="section">
-        <h3>2. Yevroprotokol</h3>
-        <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
-        <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina</div>
-        <div class="check-item"><input type="checkbox" id="c3"> Aybdor aniq va kelishilgan</div>
-        <button class="btn btn-green" onclick="checkEuro()">Tekshirish</button>
+        <h3>2. Yevroprotokol (Qoidalar)</h3>
+        <div class="check-item"><input type="checkbox" id="c1"> <span>Tan jarohati olganlar yo'q</span></div>
+        <div class="check-item"><input type="checkbox" id="c2"> <span>Faqat 2 ta transport ishtirokchi</span></div>
+        <div class="check-item"><input type="checkbox" id="c3"> <span>Piyoda/yo'l to'sig'iga zarar yetmagan</span></div>
+        <div class="check-item"><input type="checkbox" id="c4"> <span>Haydovchilar aybdorni tan olgan</span></div>
+        <div class="check-item"><input type="checkbox" id="c5"> <span>Sug'urta polislari mavjud</span></div>
+        <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
     </div>
 
     <div class="section">
-        <h3>3. Baholash</h3>
+        <h3>3. Baholash va Aloqa</h3>
         <p class="info-text">
-            <span class="highlight">Tex-pasport, haydovchilik guvohnomasi va mashina rasmlarini (4 tomondan + zarar) yuboring.</span>
+            <span class="highlight">Tex-pasport ва rasmga olib yuboring (4 tomon + zarar).</span>
         </p>
         <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
         <a href="tel:+998881912020" class="btn btn-phone">📞 +998 88 191 20 20</a>
-        <a href="tel:+998335592020" class="btn btn-phone">📞 +998 33 559 20 20</a>
     </div>
 </div>
 
@@ -84,11 +85,10 @@
     }
 
     function checkEuro() {
-        const c1 = document.getElementById('c1').checked;
-        const c2 = document.getElementById('c2').checked;
-        const c3 = document.getElementById('c3').checked;
-        if(c1 && c2 && c3) alert("Yevroprotokol mumkin! Bizga bog'laning.");
-        else alert("GAI chaqirishni maslahat beramiz.");
+        const ids = ['c1','c2','c3','c4','c5'];
+        const all = ids.every(id => document.getElementById(id).checked);
+        if(all) alert("Yevroprotokol tuzish mumkin! Rasmlarni @bobur_uzb1 ga yuboring.");
+        else alert("Diqqat! Shartlar bajarilmadi. GAI chaqiring va mashinani qimirlatmang.");
     }
 </script>
 
