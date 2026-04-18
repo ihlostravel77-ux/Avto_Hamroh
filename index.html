@@ -8,19 +8,28 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
         h2, h3 { color: #1a73e8; text-align: center; margin-top: 0; }
+        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .emergency-box h4 { margin: 0; color: #856404; font-size: 18px; text-transform: uppercase; }
         .section { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef0f2; }
-        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; }
-        select, input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
-        .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 20px; font-weight: bold; color: #1a73e8; margin-top: 10px; }
-        .btn { background: #28a745; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; margin-top: 8px; line-height: 1.4; }
-        .check-item input { width: auto; margin-top: 3px; }
-        .info-text { font-size: 13px; color: #555; line-height: 1.5; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #444; }
+        select, input { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 16px; }
+        .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 15px; border: 1px dashed #1a73e8; }
+        .btn { background: #28a745; color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn:hover { background: #218838; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; line-height: 1.4; color: #333; }
+        .check-item input { width: auto; margin-top: 4px; }
+        .info-text { font-size: 14px; color: #333; line-height: 1.6; }
+        .highlight { color: #d93025; font-weight: bold; text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <div class="emergency-box">
+        <h4>🚨 DTP BO'LDIMI?</h4>
+        <p style="font-size: 14px; margin: 8px 0; font-weight: 500;">Birinchi bo'lib bizga murojaat qiling! <br>Eng to'g'ri maslahat va taklifni beramiz.</p>
+    </div>
+
     <h2>Avto Hamroh Plus</h2>
 
     <div class="section">
@@ -28,13 +37,13 @@
         <label>Avtomobil turi:</label>
         <select id="carType" onchange="calc()">
             <option value="192000">Yengil avtomobil</option>
-            <option value="336000">Yuk avtomobili</option>
+            <option value="336000">Yuk avtomobili (S-turi)</option>
         </select>
 
         <label>Hudud:</label>
         <select id="region" onchange="calc()">
             <option value="1">Toshkent sh. va viloyati</option>
-            <option value="0.83">Boshqa viloyatlar</option>
+            <option value="0.833333333">Boshqa viloyatlar</option>
         </select>
 
         <label>Sug'urta turi:</label>
@@ -42,6 +51,7 @@
             <option value="1">Cheklangan (5 kishi)</option>
             <option value="2">Cheklanmagan (VIP)</option>
         </select>
+
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
@@ -50,8 +60,8 @@
         <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
         <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
         <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan (aybdor aniq)</div>
-        <div class="check-item"><input type="checkbox" id="c4"> <b>Sug'urta polisi muddati o'tmagan</b></div>
-        <div class="check-item"><input type="checkbox" id="c5"> <b>Mashinalar voqea joyidan siljitilmagan</b></div>
+        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
+        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar voqea joyidan siljitilmagan</div>
         <div class="check-item"><input type="checkbox" id="c6"> Haydovchilar mast emas</div>
         
         <button class="btn" onclick="checkEuro()">Imkoniyatni tekshirish</button>
@@ -60,21 +70,35 @@
     <div class="section">
         <h3>3. Avtobaholash (Qoidalar)</h3>
         <div class="info-text">
-            <b>Zararni baholash uchun:</b><br>
-            • Mustaqil baholovchi tashkilotga murojaat qiling.<br>
-            • Kerakli hujjatlar: Tex-pasport, haydovchilik guvohnomasi, sug'urta polisi va Yevroprotokol (yoki bayonnoma).<br>
-            • <b>Eslatma:</b> Sug'urta kompaniyasi baholash xulosasidan so'ng 15 kun ichida to'lovni amalga oshirishi shart.
+            <b>Zararni aniq baholash uchun bizga yuboring:</b><br>
+            • Mashina tex-pasporti nusxasi.<br>
+            • Haydovchilik guvohnomasi.<br>
+            • <span class="highlight">Mashinani davlat raqami bilan birga rasmga oling.</span><br>
+            • Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br><br>
+            <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq va to'g'ri bo'ladi.</i>
         </div>
-        <button class="btn" style="background:#1a73e8;" onclick="alert('Tez kunda: Onlayn baholash mutaxassisi bilan bog\'lanish tizimi!')">Mutaxassis bilan bog'lanish</button>
+        <button class="btn" style="background:#1a73e8;" onclick="window.location.href='https://t.me/YUK_BOR_BOT'">Hujjat va rasmlarni yuborish</button>
     </div>
 </div>
 
 <script>
     function calc() {
-        let base = document.getElementById('carType').value;
-        let region = document.getElementById('region').value;
-        let policy = document.getElementById('policyType').value;
-        let final = Math.round(base * region * policy);
+        let base = parseFloat(document.getElementById('carType').value);
+        let region = parseFloat(document.getElementById('region').value);
+        let policy = parseFloat(document.getElementById('policyType').value);
+        
+        let final;
+        // Siz aytgan aniq narxlar: 160, 320, 192, 384
+        if (base === 192000) {
+            if (region < 1) { // Boshqa viloyatlar
+                final = (policy === 1) ? 160000 : 320000;
+            } else { // Toshkent
+                final = (policy === 1) ? 192000 : 384000;
+            }
+        } else {
+            final = Math.round(base * region * policy);
+        }
+        
         document.getElementById('res').innerText = final.toLocaleString() + " so'm";
     }
 
@@ -89,9 +113,9 @@
         ];
         
         if(checks.every(val => val === true)) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin! Hujjatlarni rasmga oling ва мобил илова орқали юборинг.");
+            alert("Siz Yevroprotokol tuzishingiz mumkin! Hujjatlarni rasmga oling va mobil ilova orqali rasmiylashtiring.");
         } else {
-            alert("DIQQAT: Shartlardan biri bajarilmadi. YHXB (GAI) xodimini chaqiring ва mashinalarni joyidan qo'zg'atmang!");
+            alert("DIQQAT: Shartlardan biri bajarilmadi. Mashinalarni joyidan qo'zg'atmang va YHXB (GAI) xodimini chaqiring!");
         }
     }
 </script>
