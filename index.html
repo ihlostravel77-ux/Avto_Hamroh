@@ -16,8 +16,11 @@
         select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; }
         .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 10px; border: 2px solid #1a73e8; }
         .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-green { background: #28a745; }
         .btn-blue { background: #0088cc; }
         .btn-phone { background: #1a73e8; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; }
+        .check-item input { width: auto; margin-top: 3px; scale: 1.3; }
         .info-text { font-size: 14px; color: #333; line-height: 1.6; }
         .highlight { color: #d93025; font-weight: bold; }
     </style>
@@ -26,11 +29,9 @@
 
 <div class="container">
     <div class="emergency-box">
-        <h4>🚨 Diqqat! DTP bo'ldimi?</h4>
-        <p style="font-size: 15px; margin: 8px 0; font-weight: bold;">
-            GAI (YHXB)ga murojaat qilishdan oldin biz bilan bog'laning!
-        </p>
-        <p style="font-size: 13px; margin: 0;">Sizga eng to'g'ri maslahatni beramiz va baholash xizmatini ko'rsatamiz.</p>
+        <h4>🚨 DTP bo'ldimi?</h4>
+        <p style="font-size: 15px; margin: 8px 0; font-weight: bold;">GAIga murojaat qilishdan oldin biz bilan bog'laning!</p>
+        <p style="font-size: 13px; margin: 0;">Sizga to'g'ri maslahat beramiz va baholash xizmatini ko'rsatamiz.</p>
     </div>
 
     <h2>Avto Hamroh Plus</h2>
@@ -58,17 +59,27 @@
     </div>
 
     <div class="section">
-        <h3>2. Baholash va Hujjatlar</h3>
+        <h3>2. Yevroprotokol (Shartlar)</h3>
+        <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
+        <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
+        <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan (aybdor aniq)</div>
+        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
+        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
+        <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
+    </div>
+
+    <div class="section">
+        <h3>3. Avtobaholash ma'lumotlari</h3>
         <div class="info-text">
-            <b>Zararni baholash uchun quyidagilar kerak:</b><br>
+            <b>Zararni baholash uchun bizga yuboring:</b><br>
             ✅ Tex-pasport nusxasi.<br>
             ✅ Haydovchilik guvohnomasi.<br>
             ✅ <span class="highlight">Mashina davlat raqami bilan rasmga olinsin.</span><br>
             <br>
             <b>Rasmga olish tartibi:</b><br>
             • Mashinani 4 tomondan (old, orqa, 2 yon).<br>
-            • Zarar yetgan qismlarni yaqindan va ko'proq rasmga oling.<br>
-            <i>*Qancha ko'p rasm bo'lsa, baholash shuncha aniq bo'ladi.</i>
+            • Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br>
+            <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq bo'ladi.</i>
         </div>
         
         <button class="btn btn-blue" onclick="window.location.href='https://t.me/bobur_uzb1'">
@@ -90,27 +101,26 @@
         const policy = document.getElementById('policyType').value;
         let base = 0;
 
-        // Baza narxlarni belgilash (Toshkent uchun)
         if (car === 'yengil') base = 192000;
         else if (car === 'yuk') base = 336000;
-        else if (car === 'avtobus') base = 360000; // O'rtacha hisobda
-        else if (car === 'maxsus') base = 96000;  // Mototransport va boshqalar uchun o'rtacha
+        else if (car === 'avtobus') base = 360000;
+        else if (car === 'maxsus') base = 96000;
 
-        let sum = base;
+        let sum = (region === 'viloyat') ? base * 0.83333333 : base;
+        if (policy === 'unlimited') sum *= 2;
 
-        // Hudud bo'yicha chegirmaning qo'llanilishi
-        if (region === 'viloyat') {
-            sum = base * 0.83333333; // 160 000 / 192 000 nisbati
-        }
-
-        // Sug'urta turi bo'yicha koeffitsiyent
-        if (policy === 'unlimited') {
-            sum = sum * 2;
-        }
-
-        // Yaxlitlash va ko'rsatish
         sum = Math.round(sum / 1000) * 1000;
         document.getElementById('res').innerText = sum.toLocaleString() + " so'm";
+    }
+
+    function checkEuro() {
+        const ids = ['c1','c2','c3','c4','c5'];
+        const allChecked = ids.every(id => document.getElementById(id).checked);
+        if(allChecked) {
+            alert("Siz Yevroprotokol tuzishingiz mumkin! Maslahat uchun bizga murojaat qiling.");
+        } else {
+            alert("DIQQAT: Shartlar bajarilmadi. Mashinalarni siljitmagan holda GAI chaqiring va bizga qo'ng'iroq qiling!");
+        }
     }
 </script>
 
