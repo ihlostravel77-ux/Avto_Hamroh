@@ -14,66 +14,74 @@
         select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; }
         .result { background: #e8f0fe; padding: 12px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 2px solid #1a73e8; }
         .btn { color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 8px; display: block; text-decoration: none; text-align: center; transition: transform 0.1s; }
-        .btn:active { transform: scale(0.95); } /* Bosilganda qisqarish effekti */
+        .btn:active { transform: scale(0.95); }
         .btn-green { background: #28a745; box-shadow: 0 4px #1e7e34; }
         .btn-blue { background: #0088cc; box-shadow: 0 4px #006699; }
         .btn-phone { background: #1a73e8; box-shadow: 0 4px #155cb0; margin-bottom: 5px; }
         .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 6px; }
-        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 6px; border-left: 4px solid #d93025; box-shadow: 0 2px 5px rgba(0,0,0,0.05); line-height: 1.4; }
-        .highlight { color: #d93025; font-weight: bold; }
+        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 6px; border-left: 4px solid #d93025; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 12px; width: 100%; border: none; text-align: left; outline: none; font-size: 14px; transition: 0.4s; border-radius: 8px; margin-top: 5px; font-weight: bold; display: flex; justify-content: space-between; }
+        .panel { padding: 0 10px; background-color: white; display: none; overflow: hidden; border-radius: 0 0 8px 8px; border: 1px solid #eee; }
+        .fine-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
+        .fine-table th, .fine-table td { border: 1px solid #ddd; padding: 6px; text-align: left; }
+        .brv-box { background: #fff3cd; padding: 10px; border-radius: 8px; font-size: 12px; border-left: 4px solid #ffc107; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="emergency">
-        🚨 DTP BO'LDIMI? GAIga murojaat qilishdan oldin bizga yozing!
-    </div>
+    <div class="emergency">🚨 GAIga murojaatdan oldin bizga yozing!</div>
 
     <div class="section">
         <h3>1. Sug'urta Kalkulyatori</h3>
-        <select id="carType" onchange="calc()">
-            <option value="yengil">Yengil avtomobil</option>
-            <option value="yuk">Yuk avtomobili</option>
-            <option value="avtobus">Avtobus / Mikroavtobus</option>
-            <option value="maxsus">Traktor / Mototsikl</option>
-        </select>
-        <select id="region" style="margin-top:8px;" onchange="calc()">
-            <option value="toshkent">Toshkent sh. va viloyati</option>
-            <option value="viloyat">Boshqa viloyatlar</option>
-        </select>
-        <select id="policyType" style="margin-top:8px;" onchange="calc()">
-            <option value="limited">Cheklangan</option>
-            <option value="unlimited">VIP (Cheklanmagan)</option>
-        </select>
+        <select id="carType" onchange="calc()"><option value="yengil">Yengil</option><option value="yuk">Yuk</option><option value="avtobus">Avtobus</option><option value="maxsus">Maxsus</option></select>
+        <select id="region" style="margin-top:8px;" onchange="calc()"><option value="toshkent">Toshkent sh/vil</option><option value="viloyat">Viloyatlar</option></select>
+        <select id="policyType" style="margin-top:8px;" onchange="calc()"><option value="limited">Cheklangan</option><option value="unlimited">VIP</option></select>
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
     <div class="section">
         <h3>2. Yevroprotokol shartlari</h3>
         <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
-        <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
-        <div class="check-item"><input type="checkbox" id="c3"> Aybdor aniq va kelishilgan</div>
-        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
-        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
+        <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina</div>
+        <div class="check-item"><input type="checkbox" id="c3"> Aybdor kelishilgan</div>
+        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta muddati bor</div>
+        <div class="check-item"><input type="checkbox" id="c5"> Joyidan siljitilmagan</div>
         <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
     </div>
 
     <div class="section">
-        <h3>3. YTH vaqtida nima qilish kerak?</h3>
+        <h3>3. YTHda nima qilish kerak?</h3>
         <div class="step-box">🧘 <b>Tinchlaning!</b> O'zingizni qo'lga oling.</div>
         <div class="step-box">⚠️ Ogohlantiruvchi chiroqlarni yoqing.</div>
         <div class="step-box">🚷 Yo'lovchilarni xavfsiz joyga o'tkazing.</div>
-        <div class="step-box">📸 Holatni <span class="highlight">uzoqroqdan</span> va 4 tomondan rasm/videoga oling.</div>
-        <div class="step-box">🆔 Davlat raqamlari rasmda aniq ko'rinsin.</div>
-        <div class="step-box">📞 <b>Biz bilan bog'laning!</b></div>
+        <div class="step-box">📸 Holatni uzoqdan va 4 tomondan rasmga oling. Davlat raqami aniq bo'lsin.</div>
     </div>
 
     <div class="section">
-        <h3>4. Baholash va Bog'lanish</h3>
-        <p style="font-size: 12px; margin-bottom: 10px;">
-            <b>Zarur:</b> Tex-pasport, guvohnoma va rasmlarni yuboring.
-        </p>
+        <h3>4. Jarimalar va BRV (2026)</h3>
+        <div class="brv-box"><b>BHM (BRV) - 412 000 so'm.</b></div>
+        <button class="accordion">Asosiy jarimalar <span>+</span></button>
+        <div class="panel">
+            <table class="fine-table">
+                <tr><td>Kamar</td><td>206 000</td></tr>
+                <tr><td>Hujjatsiz</td><td>412 000</td></tr>
+                <tr><td>Qizil chiroq</td><td>824 000</td></tr>
+                <tr><td>Telefon</td><td>1 236 000</td></tr>
+            </table>
+        </div>
+        <button class="accordion">Tezlik jarimalari <span>+</span></button>
+        <div class="panel">
+            <table class="fine-table">
+                <tr><td>+20 km/s</td><td>412 000</td></tr>
+                <tr><td>20-40 km/s</td><td>2 060 000</td></tr>
+                <tr><td>40+ km/s</td><td>3 708 000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>5. Baholash ва Bog'lanish</h3>
         <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
         <a href="tel:+998881912020" class="btn btn-phone">📞 Қўнғироқ: 88 191 20 20</a>
         <a href="tel:+998335592020" class="btn btn-phone">📞 Қўнғироқ: 33 559 20 20</a>
@@ -97,10 +105,24 @@
     function checkEuro() {
         const ids = ['c1','c2','c3','c4','c5'];
         const allChecked = ids.every(id => document.getElementById(id).checked);
-        if(allChecked) alert("Yevroprotokol mumkin! Rasmlarni @bobur_uzb1 га юборинг.");
-        else alert("Diqqat! Shartlar mos kelmadi. Bizga qo'ng'iroq qiling.");
+        if(allChecked) alert("Yevroprotokol mumkin!");
+        else alert("Shartlar mos kelmadi. Bizga qo'ng'iroq qiling.");
+    }
+
+    var acc = document.getElementsByClassName("accordion");
+    for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+                this.querySelector("span").innerText = "+";
+            } else {
+                panel.style.display = "block";
+                this.querySelector("span").innerText = "-";
+            }
+        });
     }
 </script>
-
 </body>
 </html>
