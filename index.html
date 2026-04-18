@@ -5,57 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; margin: 0; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
         h2, h3 { color: #1a73e8; text-align: center; margin-top: 0; }
         .section { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef0f2; }
-        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
-        .emergency-box h4 { margin: 0; color: #856404; font-size: 18px; }
+        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 12px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
         label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #444; }
         select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; background: white; }
         .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 10px; border: 2px solid #1a73e8; }
-        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: background 0.3s; }
-        .btn-green { background: #28a745; }
-        .btn-green:hover { background: #218838; }
+        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; text-decoration: none; display: block; text-align: center; }
         .btn-blue { background: #0088cc; }
-        .btn-blue:hover { background: #0077b3; }
         .btn-phone { background: #1a73e8; }
-        .btn-phone:hover { background: #1557b0; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; color: #333; }
-        .check-item input { width: auto; margin-top: 3px; scale: 1.3; }
         .info-text { font-size: 14px; color: #333; line-height: 1.6; }
         .highlight { color: #d93025; font-weight: bold; }
-        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="emergency-box">
-        <h4>🚨 DTP bo'ldimi?</h4>
-        <p style="font-size: 14px; margin: 5px 0; font-weight: 500;">Birinchi bo'lib bizga murojaat qiling! Eng to'g'ri maslahat va taklifni beramiz.</p>
+        <h4 style="margin:0; color:#856404;">🚨 DTP bo'ldimi?</h4>
+        <p style="font-size: 13px; margin: 5px 0;">Birinchi bo'lib bizga murojaat qiling! Eng to'g'ri maslahatni beramiz.</p>
     </div>
 
     <h2>Avto Hamroh Plus</h2>
 
     <div class="section">
-        <h3>1. Sug'urta Kalkulyatori</h3>
+        <h3>Sug'urta Kalkulyatori</h3>
         
-        <label>Hudud:</label>
+        <label>1. Hududni tanlang:</label>
         <select id="region" onchange="calc()">
-            <option value="toshkent">Toshkent sh. va viloyati</option>
+            <option value="toshkent">Toshkent sh. va Toshkent viloyati</option>
             <option value="viloyat">O'zbekistonning boshqa hududlari</option>
         </select>
 
-        <label>Avtomobil turi:</label>
+        <label>2. Avtomobil turi:</label>
         <select id="carType" onchange="calc()">
             <option value="yengil">Yengil avtomobil</option>
             <option value="yuk">Yuk avtomobili</option>
-            <option value="avtobus">Avtobuslar va mikroavtobuslar</option>
-            <option value="boshqa">Motosikl, traktor va boshqalar</option>
+            <option value="avtobus">Avtobus va mikroavtobuslar</option>
+            <option value="boshqa">Tramvay, motosikl, traktor va h.k.</option>
         </select>
 
-        <label>Sug'urta turi:</label>
+        <label>3. Sug'urta turi:</label>
         <select id="policyType" onchange="calc()">
             <option value="limited">Cheklangan (5 kishi)</option>
             <option value="unlimited">Cheklanmagan (VIP)</option>
@@ -65,39 +57,17 @@
     </div>
 
     <div class="section">
-        <h3>2. Yevroprotokol (Shartlar)</h3>
-        <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
-        <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
-        <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan (aybdor aniq)</div>
-        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
-        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
-        <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
-    </div>
-
-    <div class="section">
-        <h3>3. Avtobaholash</h3>
+        <h3>Avtobaholash</h3>
         <div class="info-text">
-            <b>Zararni baholash uchun bizga murojaat qiling:</b><br>
-            ✅ Tex-pasport va Haydovchilik guvohnomasi.<br>
-            ✅ <span class="highlight">Mashina davlat raqami bilan rasmga oling.</span><br>
-            <br>
-            <b>Rasmga olish tartibi:</b><br>
-            1. Mashinani old, orqa va ikkala yon tomonidan.<br>
-            2. Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br>
-            <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq bo'ladi.</i>
+            <b>Baholash uchun bizga yuboring:</b><br>
+            ✅ Tex-pasport va Guvohnoma.<br>
+            ✅ <span class="highlight">Mashina davlat raqami bilan rasmga olinsin.</span><br>
+            ✅ Old, orqa, yon va zarar yetgan qismlarni ko'proq rasmga oling.
         </div>
         
-        <hr>
-        
-        <button class="btn btn-blue" onclick="window.location.href='https://t.me/bobur_uzb1'">
-            Telegram: @bobur_uzb1
-        </button>
-        <button class="btn btn-phone" onclick="window.location.href='tel:+998881912020'">
-            📞 +998 88 191 20 20
-        </button>
-        <button class="btn btn-phone" onclick="window.location.href='tel:+998335592020'">
-            📞 +998 33 559 20 20
-        </button>
+        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
+        <a href="tel:+998881912020" class="btn btn-phone">📞 +998 88 191 20 20</a>
+        <a href="tel:+998335592020" class="btn btn-phone">📞 +998 33 559 20 20</a>
     </div>
 </div>
 
@@ -108,7 +78,7 @@
         const policy = document.getElementById('policyType').value;
         let sum = 0;
 
-        // Aniq tariflar jadvali
+        // Siz bergan aniq shablon bo'yicha tariflar
         const rates = {
             toshkent: { 
                 yengil: 192000, 
@@ -124,29 +94,19 @@
             }
         };
 
-        // Bazaviy narxni olish
+        // Bazaviy narx
         sum = rates[region][car];
 
-        // Cheklanmagan (VIP) bo'lsa, 2 baravar (100% ustama)
+        // Agar Cheklanmagan bo'lsa, 2 baravar
         if (policy === 'unlimited') {
             sum = sum * 2;
         }
 
-        // Natijani chiroyli formatda chiqarish
+        // Bo'sh joy bilan formatlash (masalan: 192 000)
         document.getElementById('res').innerText = sum.toLocaleString().replace(/,/g, ' ') + " so'm";
     }
 
-    function checkEuro() {
-        const ids = ['c1','c2','c3','c4','c5'];
-        const allChecked = ids.every(id => document.getElementById(id).checked);
-        if(allChecked) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin! Hujjat va rasmlarni bizga yuboring.");
-        } else {
-            alert("DIQQAT: Shartlar bajarilmadi. Mashinalarni joyidan qo'zg'atmang va GAI xodimini chaqiring!");
-        }
-    }
-
-    // Sahifa yuklanganda hisoblab qo'yish
+    // Sahifa yuklanganda bir marta hisoblab qo'yish
     window.onload = calc;
 </script>
 
