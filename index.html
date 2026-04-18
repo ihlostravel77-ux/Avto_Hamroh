@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; margin: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
         h2, h3 { color: #1a73e8; text-align: center; margin-top: 0; }
         .section { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef0f2; }
-        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 12px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
-        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #444; }
-        select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; background: white; }
+        .emergency-box { background: #d93025; color: white; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% {box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.7);} 70% {box-shadow: 0 0 0 10px rgba(217, 48, 37, 0);} 100% {box-shadow: 0 0 0 0 rgba(217, 48, 37, 0);} }
+        .emergency-box h4 { margin: 0; font-size: 18px; text-transform: uppercase; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; }
+        select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; }
         .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 10px; border: 2px solid #1a73e8; }
-        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; text-decoration: none; display: block; text-align: center; }
+        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
         .btn-blue { background: #0088cc; }
         .btn-phone { background: #1a73e8; }
         .info-text { font-size: 14px; color: #333; line-height: 1.6; }
@@ -24,50 +26,60 @@
 
 <div class="container">
     <div class="emergency-box">
-        <h4 style="margin:0; color:#856404;">🚨 DTP bo'ldimi?</h4>
-        <p style="font-size: 13px; margin: 5px 0;">Birinchi bo'lib bizga murojaat qiling! Eng to'g'ri maslahatni beramiz.</p>
+        <h4>🚨 Diqqat! DTP bo'ldimi?</h4>
+        <p style="font-size: 15px; margin: 8px 0; font-weight: bold;">
+            GAI (YHXB)ga murojaat qilishdan oldin biz bilan bog'laning!
+        </p>
+        <p style="font-size: 13px; margin: 0;">Sizga eng to'g'ri maslahatni beramiz va baholash xizmatini ko'rsatamiz.</p>
     </div>
 
     <h2>Avto Hamroh Plus</h2>
 
     <div class="section">
-        <h3>Sug'urta Kalkulyatori</h3>
-        
-        <label>1. Hududni tanlang:</label>
-        <select id="region" onchange="calc()">
-            <option value="toshkent">Toshkent sh. va Toshkent viloyati</option>
-            <option value="viloyat">O'zbekistonning boshqa hududlari</option>
-        </select>
-
-        <label>2. Avtomobil turi:</label>
+        <h3>1. Sug'urta Kalkulyatori</h3>
+        <label>Avtomobil turi:</label>
         <select id="carType" onchange="calc()">
             <option value="yengil">Yengil avtomobil</option>
             <option value="yuk">Yuk avtomobili</option>
-            <option value="avtobus">Avtobus va mikroavtobuslar</option>
-            <option value="boshqa">Tramvay, motosikl, traktor va h.k.</option>
+            <option value="avtobus">Avtobus va mikroavtobus</option>
+            <option value="maxsus">Tramvay, traktor, mototransport</option>
         </select>
-
-        <label>3. Sug'urta turi:</label>
+        <label>Hudud:</label>
+        <select id="region" onchange="calc()">
+            <option value="toshkent">Toshkent sh. va viloyati</option>
+            <option value="viloyat">Boshqa viloyatlar</option>
+        </select>
+        <label>Sug'urta turi:</label>
         <select id="policyType" onchange="calc()">
             <option value="limited">Cheklangan (5 kishi)</option>
             <option value="unlimited">Cheklanmagan (VIP)</option>
         </select>
-
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
     <div class="section">
-        <h3>Avtobaholash</h3>
+        <h3>2. Baholash va Hujjatlar</h3>
         <div class="info-text">
-            <b>Baholash uchun bizga yuboring:</b><br>
-            ✅ Tex-pasport va Guvohnoma.<br>
+            <b>Zararni baholash uchun quyidagilar kerak:</b><br>
+            ✅ Tex-pasport nusxasi.<br>
+            ✅ Haydovchilik guvohnomasi.<br>
             ✅ <span class="highlight">Mashina davlat raqami bilan rasmga olinsin.</span><br>
-            ✅ Old, orqa, yon va zarar yetgan qismlarni ko'proq rasmga oling.
+            <br>
+            <b>Rasmga olish tartibi:</b><br>
+            • Mashinani 4 tomondan (old, orqa, 2 yon).<br>
+            • Zarar yetgan qismlarni yaqindan va ko'proq rasmga oling.<br>
+            <i>*Qancha ko'p rasm bo'lsa, baholash shuncha aniq bo'ladi.</i>
         </div>
         
-        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
-        <a href="tel:+998881912020" class="btn btn-phone">📞 +998 88 191 20 20</a>
-        <a href="tel:+998335592020" class="btn btn-phone">📞 +998 33 559 20 20</a>
+        <button class="btn btn-blue" onclick="window.location.href='https://t.me/bobur_uzb1'">
+            Telegram: @bobur_uzb1
+        </button>
+        <button class="btn btn-phone" onclick="window.location.href='tel:+998881912020'">
+            📞 +998 88 191 20 20
+        </button>
+        <button class="btn btn-phone" onclick="window.location.href='tel:+998335592020'">
+            📞 +998 33 559 20 20
+        </button>
     </div>
 </div>
 
@@ -76,38 +88,30 @@
         const car = document.getElementById('carType').value;
         const region = document.getElementById('region').value;
         const policy = document.getElementById('policyType').value;
-        let sum = 0;
+        let base = 0;
 
-        // Siz bergan aniq shablon bo'yicha tariflar
-        const rates = {
-            toshkent: { 
-                yengil: 192000, 
-                yuk: 336000, 
-                avtobus: 384000, 
-                boshqa: 72000 
-            },
-            viloyat: { 
-                yengil: 160000, 
-                yuk: 280000, 
-                avtobus: 320000, 
-                boshqa: 60000 
-            }
-        };
+        // Baza narxlarni belgilash (Toshkent uchun)
+        if (car === 'yengil') base = 192000;
+        else if (car === 'yuk') base = 336000;
+        else if (car === 'avtobus') base = 360000; // O'rtacha hisobda
+        else if (car === 'maxsus') base = 96000;  // Mototransport va boshqalar uchun o'rtacha
 
-        // Bazaviy narx
-        sum = rates[region][car];
+        let sum = base;
 
-        // Agar Cheklanmagan bo'lsa, 2 baravar
+        // Hudud bo'yicha chegirmaning qo'llanilishi
+        if (region === 'viloyat') {
+            sum = base * 0.83333333; // 160 000 / 192 000 nisbati
+        }
+
+        // Sug'urta turi bo'yicha koeffitsiyent
         if (policy === 'unlimited') {
             sum = sum * 2;
         }
 
-        // Bo'sh joy bilan formatlash (masalan: 192 000)
-        document.getElementById('res').innerText = sum.toLocaleString().replace(/,/g, ' ') + " so'm";
+        // Yaxlitlash va ko'rsatish
+        sum = Math.round(sum / 1000) * 1000;
+        document.getElementById('res').innerText = sum.toLocaleString() + " so'm";
     }
-
-    // Sahifa yuklanganda bir marta hisoblab qo'yish
-    window.onload = calc;
 </script>
 
 </body>
