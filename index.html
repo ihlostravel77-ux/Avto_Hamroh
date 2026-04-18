@@ -9,16 +9,18 @@
         .container { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
         h3 { color: #1a73e8; text-align: center; margin: 8px 0; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         .section { background: #f8f9fa; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #eef0f2; }
-        .emergency { background: #d93025; color: white; padding: 8px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 13px; }
-        select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; }
-        .result { background: #e8f0fe; padding: 10px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 1px solid #1a73e8; }
-        .btn { color: white; border: none; width: 100%; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold; margin-top: 5px; display: block; text-decoration: none; text-align: center; }
-        .btn-green { background: #28a745; }
-        .btn-blue { background: #0088cc; }
-        .btn-phone { background: #1a73e8; }
-        .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-top: 4px; }
-        .info-text { font-size: 11px; color: #333; line-height: 1.4; }
-        .step-box { font-size: 11px; background: #fff; padding: 8px; border-radius: 6px; margin-top: 5px; border-left: 3px solid #d93025; }
+        .emergency { background: #d93025; color: white; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 14px; animation: blink 2s infinite; }
+        @keyframes blink { 0% {opacity: 1;} 50% {opacity: 0.8;} 100% {opacity: 1;} }
+        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; }
+        .result { background: #e8f0fe; padding: 12px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 2px solid #1a73e8; }
+        .btn { color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 8px; display: block; text-decoration: none; text-align: center; transition: transform 0.1s; }
+        .btn:active { transform: scale(0.95); } /* Bosilganda qisqarish effekti */
+        .btn-green { background: #28a745; box-shadow: 0 4px #1e7e34; }
+        .btn-blue { background: #0088cc; box-shadow: 0 4px #006699; }
+        .btn-phone { background: #1a73e8; box-shadow: 0 4px #155cb0; margin-bottom: 5px; }
+        .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 6px; }
+        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 6px; border-left: 4px solid #d93025; box-shadow: 0 2px 5px rgba(0,0,0,0.05); line-height: 1.4; }
+        .highlight { color: #d93025; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -36,11 +38,11 @@
             <option value="avtobus">Avtobus / Mikroavtobus</option>
             <option value="maxsus">Traktor / Mototsikl</option>
         </select>
-        <select id="region" style="margin-top:5px;" onchange="calc()">
+        <select id="region" style="margin-top:8px;" onchange="calc()">
             <option value="toshkent">Toshkent sh. va viloyati</option>
             <option value="viloyat">Boshqa viloyatlar</option>
         </select>
-        <select id="policyType" style="margin-top:5px;" onchange="calc()">
+        <select id="policyType" style="margin-top:8px;" onchange="calc()">
             <option value="limited">Cheklangan</option>
             <option value="unlimited">VIP (Cheklanmagan)</option>
         </select>
@@ -48,13 +50,13 @@
     </div>
 
     <div class="section">
-        <h3>2. Yevroprotokol (5 ta shart)</h3>
+        <h3>2. Yevroprotokol shartlari</h3>
         <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
         <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
         <div class="check-item"><input type="checkbox" id="c3"> Aybdor aniq va kelishilgan</div>
         <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
         <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
-        <button class="btn btn-green" onclick="checkEuro()">Tekshirish</button>
+        <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
     </div>
 
     <div class="section">
@@ -62,19 +64,19 @@
         <div class="step-box">🧘 <b>Tinchlaning!</b> O'zingizni qo'lga oling.</div>
         <div class="step-box">⚠️ Ogohlantiruvchi chiroqlarni yoqing.</div>
         <div class="step-box">🚷 Yo'lovchilarni xavfsiz joyga o'tkazing.</div>
-        <div class="step-box">📸 Holatni uzoqdan va har tomondan (4 tomon) rasm/videoga oling.</div>
+        <div class="step-box">📸 Holatni <span class="highlight">uzoqroqdan</span> va 4 tomondan rasm/videoga oling.</div>
         <div class="step-box">🆔 Davlat raqamlari rasmda aniq ko'rinsin.</div>
         <div class="step-box">📞 <b>Biz bilan bog'laning!</b></div>
     </div>
 
     <div class="section">
         <h3>4. Baholash va Bog'lanish</h3>
-        <p class="info-text">
-            <b>Zarur:</b> Tex-pasport, guvohnoma ва расмларни юборинг.
+        <p style="font-size: 12px; margin-bottom: 10px;">
+            <b>Zarur:</b> Tex-pasport, guvohnoma va rasmlarni yuboring.
         </p>
         <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
-        <a href="tel:+998881912020" class="btn btn-phone">📞 +998 88 191 20 20</a>
-        <a href="tel:+998335592020" class="btn btn-phone">📞 +998 33 559 20 20</a>
+        <a href="tel:+998881912020" class="btn btn-phone">📞 Қўнғироқ: 88 191 20 20</a>
+        <a href="tel:+998335592020" class="btn btn-phone">📞 Қўнғироқ: 33 559 20 20</a>
     </div>
 </div>
 
@@ -96,7 +98,7 @@
         const ids = ['c1','c2','c3','c4','c5'];
         const allChecked = ids.every(id => document.getElementById(id).checked);
         if(allChecked) alert("Yevroprotokol mumkin! Rasmlarni @bobur_uzb1 га юборинг.");
-        else alert("Shartlar mos kelmadi. Bizga qo'ng'iroq qiling.");
+        else alert("Diqqat! Shartlar mos kelmadi. Bizga qo'ng'iroq qiling.");
     }
 </script>
 
