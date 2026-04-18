@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
         h2, h3 { color: #1a73e8; text-align: center; margin-top: 0; }
-        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .emergency-box h4 { margin: 0; color: #856404; font-size: 18px; text-transform: uppercase; }
         .section { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef0f2; }
-        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #444; }
-        select, input { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 16px; }
-        .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 15px; border: 1px dashed #1a73e8; }
-        .btn { background: #28a745; color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
-        .btn:hover { background: #218838; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; line-height: 1.4; color: #333; }
-        .check-item input { width: auto; margin-top: 4px; }
+        .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
+        .emergency-box h4 { margin: 0; color: #856404; font-size: 18px; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; }
+        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; }
+        .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; color: #1a73e8; margin-top: 10px; border: 2px solid #1a73e8; }
+        .btn { background: #28a745; color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; }
+        .check-item input { width: auto; margin-top: 3px; scale: 1.2; }
         .info-text { font-size: 14px; color: #333; line-height: 1.6; }
         .highlight { color: #d93025; font-weight: bold; text-decoration: underline; }
     </style>
@@ -26,8 +25,8 @@
 
 <div class="container">
     <div class="emergency-box">
-        <h4>🚨 DTP BO'LDIMI?</h4>
-        <p style="font-size: 14px; margin: 8px 0; font-weight: 500;">Birinchi bo'lib bizga murojaat qiling! <br>Eng to'g'ri maslahat va taklifni beramiz.</p>
+        <h4>🚨 DTP bo'ldimi?</h4>
+        <p style="font-size: 14px; margin: 5px 0; font-weight: 500;">Birinchi bo'lib bizga murojaat qiling! Eng to'g'ri maslahat va taklifni beramiz.</p>
     </div>
 
     <h2>Avto Hamroh Plus</h2>
@@ -36,86 +35,79 @@
         <h3>1. Sug'urta Kalkulyatori</h3>
         <label>Avtomobil turi:</label>
         <select id="carType" onchange="calc()">
-            <option value="192000">Yengil avtomobil</option>
-            <option value="336000">Yuk avtomobili (S-turi)</option>
+            <option value="yengil">Yengil avtomobil</option>
+            <option value="yuk">Yuk avtomobili</option>
         </select>
-
         <label>Hudud:</label>
         <select id="region" onchange="calc()">
-            <option value="1">Toshkent sh. va viloyati</option>
-            <option value="0.833333333">Boshqa viloyatlar</option>
+            <option value="toshkent">Toshkent sh. va viloyati</option>
+            <option value="viloyat">Boshqa viloyatlar</option>
         </select>
-
         <label>Sug'urta turi:</label>
         <select id="policyType" onchange="calc()">
-            <option value="1">Cheklangan (5 kishi)</option>
-            <option value="2">Cheklanmagan (VIP)</option>
+            <option value="limited">Cheklangan (5 kishi)</option>
+            <option value="unlimited">Cheklanmagan (VIP)</option>
         </select>
-
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
     <div class="section">
-        <h3>2. Yevroprotokol (Check-list)</h3>
+        <h3>2. Yevroprotokol (Shartlar)</h3>
         <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
         <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
         <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan (aybdor aniq)</div>
         <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
-        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar voqea joyidan siljitilmagan</div>
-        <div class="check-item"><input type="checkbox" id="c6"> Haydovchilar mast emas</div>
-        
+        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
         <button class="btn" onclick="checkEuro()">Imkoniyatni tekshirish</button>
     </div>
 
     <div class="section">
-        <h3>3. Avtobaholash (Qoidalar)</h3>
+        <h3>3. Avtobaholash</h3>
         <div class="info-text">
-            <b>Zararni aniq baholash uchun bizga yuboring:</b><br>
-            • Mashina tex-pasporti nusxasi.<br>
-            • Haydovchilik guvohnomasi.<br>
-            • <span class="highlight">Mashinani davlat raqami bilan birga rasmga oling.</span><br>
-            • Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br><br>
-            <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq va to'g'ri bo'ladi.</i>
+            <b>Zararni baholash uchun bizga murojaat qiling. Kerakli hujjatlar:</b><br>
+            ✅ Tex-pasport nusxasi.<br>
+            ✅ Haydovchilik guvohnomasi.<br>
+            ✅ <span class="highlight">Mashina davlat raqami bilan rasmga oling.</span><br>
+            <br>
+            <b>Rasmga olish tartibi:</b><br>
+            1. Mashinani old, orqa va ikkala yon tomonidan.<br>
+            2. Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br>
+            <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq bo'ladi.</i>
         </div>
-        <button class="btn" style="background:#1a73e8;" onclick="window.location.href='https://t.me/YUK_BOR_BOT'">Hujjat va rasmlarni yuborish</button>
+        <button class="btn" style="background:#1a73e8;" onclick="window.location.href='https://t.me/YUK_BOR_BOT'">Biz bilan bog'lanish (Telegram)</button>
     </div>
 </div>
 
 <script>
     function calc() {
-        let base = parseFloat(document.getElementById('carType').value);
-        let region = parseFloat(document.getElementById('region').value);
-        let policy = parseFloat(document.getElementById('policyType').value);
-        
-        let final;
-        // Siz aytgan aniq narxlar: 160, 320, 192, 384
-        if (base === 192000) {
-            if (region < 1) { // Boshqa viloyatlar
-                final = (policy === 1) ? 160000 : 320000;
-            } else { // Toshkent
-                final = (policy === 1) ? 192000 : 384000;
+        const car = document.getElementById('carType').value;
+        const region = document.getElementById('region').value;
+        const policy = document.getElementById('policyType').value;
+        let sum = 0;
+
+        if (car === 'yengil') {
+            if (region === 'toshkent') {
+                sum = (policy === 'limited') ? 192000 : 384000;
+            } else {
+                sum = (policy === 'limited') ? 160000 : 320000;
             }
         } else {
-            final = Math.round(base * region * policy);
+            // Yuk avtomobillari uchun standart hisob
+            let base = 336000;
+            let regMult = (region === 'toshkent') ? 1 : 0.83;
+            let polMult = (policy === 'limited') ? 1 : 2;
+            sum = Math.round(base * regMult * polMult);
         }
-        
-        document.getElementById('res').innerText = final.toLocaleString() + " so'm";
+
+        document.getElementById('res').innerText = sum.toLocaleString() + " so'm";
     }
 
     function checkEuro() {
-        const checks = [
-            document.getElementById('c1').checked,
-            document.getElementById('c2').checked,
-            document.getElementById('c3').checked,
-            document.getElementById('c4').checked,
-            document.getElementById('c5').checked,
-            document.getElementById('c6').checked
-        ];
-        
-        if(checks.every(val => val === true)) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin! Hujjatlarni rasmga oling va mobil ilova orqali rasmiylashtiring.");
+        const checks = ['c1','c2','c3','c4','c5'].every(id => document.getElementById(id).checked);
+        if(checks) {
+            alert("Siz Yevroprotokol tuzishingiz mumkin!");
         } else {
-            alert("DIQQAT: Shartlardan biri bajarilmadi. Mashinalarni joyidan qo'zg'atmang va YHXB (GAI) xodimini chaqiring!");
+            alert("DIQQAT: Shartlar bajarilmadi. Mashinalarni joyidan qo'zg'atmang va GAI chaqiring!");
         }
     }
 </script>
