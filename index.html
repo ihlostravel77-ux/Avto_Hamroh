@@ -3,63 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avto Hamroh - Sug'urta va Yevroprotokol</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
-        .container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        h2 { color: #2c3e50; text-align: center; }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        select, input { width: 100%; padding: 12px; margin-top: 8px; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
-        .result { background: #e7f3ff; padding: 15px; border-radius: 10px; text-align: center; margin-top: 20px; font-size: 22px; font-weight: bold; color: #007bff; }
-        .btn { background: #28a745; color: white; border: none; width: 100%; padding: 15px; border-radius: 10px; margin-top: 20px; cursor: pointer; font-size: 18px; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h2>Avto Hamroh</h2>
-    <label>Avtomobil turi:</label>
-    <select id="carType" onchange="calc()">
-        <option value="192000">Yengil avtomobil</option>
-        <option value="336000">Yuk avtomobili</option>
-    </select>
-    <label>Hudud:</label>
-    <select id="region" onchange="calc()">
-        <option value="1">Toshkent sh. va viloyati</option>
-        <option value="0.83">Boshqa viloyatlar</option>
-    </select>
-    <div class="result" id="res">192 000 so'm</div>
-    <hr style="margin-top: 25px;">
-    <h3>Yevroprotokol:</h3>
-    <label><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</label>
-    <label><input type="checkbox" id="c2"> Faqat 2 ta mashina</label>
-    <label><input type="checkbox" id="c3"> Haydovchilar kelishgan</label>
-    <button class="btn" onclick="checkEuro()">Tekshirish</button>
-</div>
-
-<script>
-    function calc() {
-        let base = document.getElementById('carType').value;
-        let region = document.getElementById('region').value;
-        let final = Math.round(base * region);
-        document.getElementById('res').innerText = final.toLocaleString() + " so'm";
-    }
-    function checkEuro() {
-        if(document.getElementById('c1').checked && document.getElementById('c2').checked && document.getElementById('c3').checked) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin!");
-        } else {
-            alert("YHXBni chaqiring!");
-        }
-    }
-</script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avto Hamroh - Sug'urta va Yevroprotokol</title>
+    <title>Avto Hamroh</title>
     <style>
         body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
         .container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
@@ -78,7 +22,7 @@
 
 <div class="container">
     <h2>Avto Hamroh</h2>
-    <div class="desc">Avtosug'urta, Yevroprotokol va haydovchilar yordamchisi</div>
+    <div class="desc">Avtosug'urta va Yevroprotokol yordamchisi</div>
     
     <label>Avtomobil turi:</label>
     <select id="carType" onchange="calc()">
@@ -95,7 +39,7 @@
     <div class="result" id="res">192 000 so'm</div>
 
     <hr>
-    <h3 style="margin-bottom:10px;">Yevroprotokol tekshiruvi:</h3>
+    <h3 style="margin-bottom:10px;">Yevroprotokol:</h3>
     <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
     <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina</div>
     <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan</div>
@@ -117,9 +61,9 @@
         const c3 = document.getElementById('c3').checked;
         
         if(c1 && c2 && c3) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin! Jarayonni davom ettiring.");
+            alert("Siz Yevroprotokol tuzishingiz mumkin!");
         } else {
-            alert("DIQQAT: Yevroprotokol shartlariga to'g'ri kelmaydi. YHXB (GAI) xodimini chaqiring!");
+            alert("DIQQAT: YHXB (GAI) xodimini chaqiring!");
         }
     }
 </script>
