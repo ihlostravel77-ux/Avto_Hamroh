@@ -5,23 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 20px; margin: 0; }
         .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
         h2, h3 { color: #1a73e8; text-align: center; margin-top: 0; }
         .section { background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #eef0f2; }
         .emergency-box { background: #fff3cd; border: 2px solid #ffeeba; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
         .emergency-box h4 { margin: 0; color: #856404; font-size: 18px; }
-        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; }
-        select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; }
+        label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; color: #444; }
+        select { width: 100%; padding: 12px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-size: 15px; background: white; }
         .result { background: #e8f0fe; padding: 15px; border-radius: 10px; text-align: center; font-size: 24px; font-weight: bold; color: #1a73e8; margin-top: 10px; border: 2px solid #1a73e8; }
-        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; transition: background 0.3s; }
         .btn-green { background: #28a745; }
+        .btn-green:hover { background: #218838; }
         .btn-blue { background: #0088cc; }
+        .btn-blue:hover { background: #0077b3; }
         .btn-phone { background: #1a73e8; }
-        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; }
+        .btn-phone:hover { background: #1557b0; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; margin-top: 10px; color: #333; }
         .check-item input { width: auto; margin-top: 3px; scale: 1.3; }
         .info-text { font-size: 14px; color: #333; line-height: 1.6; }
         .highlight { color: #d93025; font-weight: bold; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
     </style>
 </head>
 <body>
@@ -36,21 +40,27 @@
 
     <div class="section">
         <h3>1. Sug'urta Kalkulyatori</h3>
+        
+        <label>Hudud:</label>
+        <select id="region" onchange="calc()">
+            <option value="toshkent">Toshkent sh. va viloyati</option>
+            <option value="viloyat">O'zbekistonning boshqa hududlari</option>
+        </select>
+
         <label>Avtomobil turi:</label>
         <select id="carType" onchange="calc()">
             <option value="yengil">Yengil avtomobil</option>
             <option value="yuk">Yuk avtomobili</option>
+            <option value="avtobus">Avtobuslar va mikroavtobuslar</option>
+            <option value="boshqa">Motosikl, traktor va boshqalar</option>
         </select>
-        <label>Hudud:</label>
-        <select id="region" onchange="calc()">
-            <option value="toshkent">Toshkent sh. va viloyati</option>
-            <option value="viloyat">Boshqa viloyatlar</option>
-        </select>
+
         <label>Sug'urta turi:</label>
         <select id="policyType" onchange="calc()">
             <option value="limited">Cheklangan (5 kishi)</option>
             <option value="unlimited">Cheklanmagan (VIP)</option>
         </select>
+
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
@@ -67,16 +77,17 @@
     <div class="section">
         <h3>3. Avtobaholash</h3>
         <div class="info-text">
-            <b>Zararni baholash uchun bizga murojaat qiling. Kerakli hujjatlar:</b><br>
-            ✅ Tex-pasport nusxasi.<br>
-            ✅ Haydovchilik guvohnomasi.<br>
+            <b>Zararni baholash uchun bizga murojaat qiling:</b><br>
+            ✅ Tex-pasport va Haydovchilik guvohnomasi.<br>
             ✅ <span class="highlight">Mashina davlat raqami bilan rasmga oling.</span><br>
             <br>
             <b>Rasmga olish tartibi:</b><br>
             1. Mashinani old, orqa va ikkala yon tomonidan.<br>
-            2. Zarar yetgan qismlarni batafsil ko'proq rasmga oling.<br>
+            2. Zarar yetgan qismlarni batafsil va ko'proq rasmga oling.<br>
             <i>*Rasm qancha ko'p bo'lsa, baholash shuncha aniq bo'ladi.</i>
         </div>
+        
+        <hr>
         
         <button class="btn btn-blue" onclick="window.location.href='https://t.me/bobur_uzb1'">
             Telegram: @bobur_uzb1
@@ -97,32 +108,46 @@
         const policy = document.getElementById('policyType').value;
         let sum = 0;
 
-        if (car === 'yengil') {
-            if (region === 'toshkent') {
-                sum = (policy === 'limited') ? 192000 : 384000;
-            } else {
-                sum = (policy === 'limited') ? 160000 : 320000;
+        // Aniq tariflar jadvali
+        const rates = {
+            toshkent: { 
+                yengil: 192000, 
+                yuk: 336000, 
+                avtobus: 384000, 
+                boshqa: 72000 
+            },
+            viloyat: { 
+                yengil: 160000, 
+                yuk: 280000, 
+                avtobus: 320000, 
+                boshqa: 60000 
             }
-        } else {
-            // Yuk avtomobillari uchun standart hisob
-            let base = 336000;
-            let regMult = (region === 'toshkent') ? 1 : 0.83;
-            let polMult = (policy === 'limited') ? 1 : 2;
-            sum = Math.round(base * regMult * polMult);
+        };
+
+        // Bazaviy narxni olish
+        sum = rates[region][car];
+
+        // Cheklanmagan (VIP) bo'lsa, 2 baravar (100% ustama)
+        if (policy === 'unlimited') {
+            sum = sum * 2;
         }
 
-        document.getElementById('res').innerText = sum.toLocaleString() + " so'm";
+        // Natijani chiroyli formatda chiqarish
+        document.getElementById('res').innerText = sum.toLocaleString().replace(/,/g, ' ') + " so'm";
     }
 
     function checkEuro() {
         const ids = ['c1','c2','c3','c4','c5'];
         const allChecked = ids.every(id => document.getElementById(id).checked);
         if(allChecked) {
-            alert("Siz Yevroprotokol tuzishingiz mumkin! Rasmlarni bizga yuboring.");
+            alert("Siz Yevroprotokol tuzishingiz mumkin! Hujjat va rasmlarni bizga yuboring.");
         } else {
-            alert("DIQQAT: Shartlar bajarilmadi. Mashinalarni joyidan qo'zg'atmang va GAI chaqiring!");
+            alert("DIQQAT: Shartlar bajarilmadi. Mashinalarni joyidan qo'zg'atmang va GAI xodimini chaqiring!");
         }
     }
+
+    // Sahifa yuklanganda hisoblab qo'yish
+    window.onload = calc;
 </script>
 
 </body>
