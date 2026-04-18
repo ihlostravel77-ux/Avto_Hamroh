@@ -8,62 +8,62 @@
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 10px; margin: 0; }
         .container { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
         h3 { color: #1a73e8; text-align: center; margin: 5px 0; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
-        .section { background: #f8f9fa; padding: 10px; border-radius: 10px; margin-bottom: 10px; border: 1px solid #eef0f2; }
-        .emergency { background: #d93025; color: white; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 13px; line-height: 1.4; }
-        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; }
+        .section { background: #f8f9fa; padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+        .emergency { background: #d93025; color: white; padding: 8px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 13px; }
+        select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; }
         .result { background: #e8f0fe; padding: 10px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 1px solid #1a73e8; }
-        .btn { color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 8px; display: block; text-decoration: none; text-align: center; transition: 0.3s; }
+        .btn { color: white; border: none; width: 100%; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: bold; margin-top: 5px; display: block; text-decoration: none; text-align: center; }
         .btn-green { background: #28a745; }
-        .btn-blue { background: #0088cc; box-shadow: 0 4px 10px rgba(0,136,204,0.3); }
-        .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-top: 5px; }
-        .info-text { font-size: 12px; color: #333; line-height: 1.5; margin-bottom: 5px; }
-        .highlight { color: #d93025; font-weight: bold; }
+        .btn-blue { background: #0088cc; }
+        .btn-phone { background: #1a73e8; }
+        .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-top: 4px; }
+        .info-text { font-size: 11px; color: #333; line-height: 1.3; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="emergency">
-        🚨 DTP BO'LDIMI? <br>
-        GAIga murojaat qilishdan oldin bizga yozing, maslahat va baholash xizmatini taqdim etamiz!
+        🚨 DTP BO'LDIMI? GAIga murojaat qilishdan oldin bizga yozing!
     </div>
 
     <div class="section">
-        <h3>1. Sug'urta Kalkulyatori</h3>
+        <h3>1. Kalkulyator</h3>
         <select id="carType" onchange="calc()">
             <option value="yengil">Yengil avtomobil</option>
             <option value="yuk">Yuk avtomobili</option>
             <option value="avtobus">Avtobus / Mikroavtobus</option>
-            <option value="maxsus">Traktor / Mototransport</option>
+            <option value="maxsus">Traktor / Mototsikl</option>
         </select>
         <select id="region" style="margin-top:5px;" onchange="calc()">
             <option value="toshkent">Toshkent sh. va viloyati</option>
             <option value="viloyat">Boshqa viloyatlar</option>
         </select>
         <select id="policyType" style="margin-top:5px;" onchange="calc()">
-            <option value="limited">Cheklangan (5 kishi)</option>
+            <option value="limited">Cheklangan</option>
             <option value="unlimited">VIP (Cheklanmagan)</option>
         </select>
         <div class="result" id="res">192 000 so'm</div>
     </div>
 
     <div class="section">
-        <h3>2. Yevroprotokol Tekshiruvi</h3>
+        <h3>2. Yevroprotokol (Shartlar)</h3>
         <div class="check-item"><input type="checkbox" id="c1"> Jarohatlanganlar yo'q</div>
         <div class="check-item"><input type="checkbox" id="c2"> Faqat 2 ta mashina ishtirokchi</div>
-        <div class="check-item"><input type="checkbox" id="c3"> Aybdor aniq va kelishilgan</div>
+        <div class="check-item"><input type="checkbox" id="c3"> Haydovchilar kelishgan (aybdor aniq)</div>
+        <div class="check-item"><input type="checkbox" id="c4"> Sug'urta polisi muddati o'tmagan</div>
+        <div class="check-item"><input type="checkbox" id="c5"> Mashinalar joyidan siljitilmagan</div>
         <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
     </div>
 
     <div class="section">
-        <h3>3. Baholash va Murojaat</h3>
+        <h3>3. Baholash va Maslahat</h3>
         <div class="info-text">
-            <b>Zararni baholash uchun quyidagilarni yuboring:</b><br>
-            ✅ Tex-pasport va haydovchilik guvohnomasi.<br>
-            ✅ <span class="highlight">Mashina rasmlari (4 tomondan + zarar yetgan joyi).</span><br>
-            <i>*Rasmlar davlat raqami ko'ringan holda bo'lishi shart.</i>
+            <b>Zarur:</b> Tex-pasport, guvohnoma va mashina rasmlari (4 tomon + zarar).
         </div>
-        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram orqali bog'lanish</a>
+        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
+        <a href="tel:+998881912020" class="btn btn-phone">📞 +998 88 191 20 20</a>
+        <a href="tel:+998335592020" class="btn btn-phone">📞 +998 33 559 20 20</a>
     </div>
 </div>
 
@@ -73,26 +73,19 @@
         const region = document.getElementById('region').value;
         const policy = document.getElementById('policyType').value;
         let base = 192000;
-        
         if (car === 'yuk') base = 336000;
         else if (car === 'avtobus') base = 360000;
         else if (car === 'maxsus') base = 96000;
-
         let sum = (region === 'viloyat') ? base * 0.833333 : base;
         if (policy === 'unlimited') sum *= 2;
-        
         document.getElementById('res').innerText = (Math.round(sum / 1000) * 1000).toLocaleString() + " so'm";
     }
 
     function checkEuro() {
-        const c1 = document.getElementById('c1').checked;
-        const c2 = document.getElementById('c2').checked;
-        const c3 = document.getElementById('c3').checked;
-        if(c1 && c2 && c3) {
-            alert("Sizda Yevroprotokol imkoniyati bor! Ma'lumotlarni Telegram orqali yuboring.");
-        } else {
-            alert("Diqqat! Shartlar mos kelmadi. GAI chaqirishni maslahat beramiz.");
-        }
+        const ids = ['c1','c2','c3','c4','c5'];
+        const allChecked = ids.every(id => document.getElementById(id).checked);
+        if(allChecked) alert("Yevroprotokol mumkin! Rasmlarni bizga yuboring.");
+        else alert("Diqqat! Shartlar mos kelmadi. GAI chaqirishni maslahat beramiz.");
     }
 </script>
 
