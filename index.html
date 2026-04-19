@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 10px; margin: 0; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 10px; margin: 0; }
         .container { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
         h3 { color: #1a73e8; text-align: center; margin: 8px 0; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .section { background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #eef0f2; }
         .emergency { background: #d93025; color: white; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 14px; }
         
-        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; background: white; }
+        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; background: white; -webkit-appearance: none; }
         .result { background: #e8f0fe; padding: 12px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 2px solid #1a73e8; }
         
-        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 10px; display: block; text-decoration: none; text-align: center; -webkit-appearance: none; }
-        .btn-green { background: #28a745; }
-        .btn-blue { background: #0088cc; }
-        .btn-phone { background: #1a73e8; }
+        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 10px; display: block; text-decoration: none; text-align: center; -webkit-tap-highlight-color: transparent; }
+        .btn-green { background: #28a745; box-shadow: 0 3px #1e7e34; }
+        .btn-blue { background: #0088cc; box-shadow: 0 3px #006699; }
+        .btn-phone { background: #1a73e8; box-shadow: 0 3px #155cb0; }
         
-        .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 8px; }
-        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 8px; border-left: 4px solid #d93025; line-height: 1.4; }
-        
+        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 8px; border-left: 4px solid #d93025; line-height: 1.4; color: #333; }
         .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 12px; width: 100%; border: none; text-align: left; outline: none; font-size: 14px; transition: 0.4s; border-radius: 8px; margin-top: 5px; font-weight: bold; display: flex; justify-content: space-between; }
         .panel { padding: 0 10px; background-color: white; display: none; overflow: hidden; border-radius: 0 0 8px 8px; border: 1px solid #eee; }
+        .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin: 8px 0; }
     </style>
 </head>
 <body>
@@ -34,12 +34,14 @@
 
     <div class="section">
         <h3>1. Sug'urta Kalkulyatori</h3>
-        <select id="carType" onchange="calc()"><option value="yengil">Yengil</option><option value="yuk">Yuk</option><option value="avtobus">Avtobus</option><option value="maxsus">Maxsus</option></select>
-        <select id="region" style="margin-top:8px;" onchange="calc()"><option value="toshkent">Toshkent sh/vil</option><option value="viloyat">Viloyatlar</option></select>
+        <select id="carType" onchange="calc()"><option value="yengil">Yengil avtomobil</option><option value="yuk">Yuk avtomobili</option><option value="avtobus">Avtobus</option><option value="maxsus">Maxsus texnika</option></select>
+        <select id="region" style="margin-top:8px;" onchange="calc()"><option value="toshkent">Toshkent sh. va viloyati</option><option value="viloyat">Boshqa viloyatlar</option></select>
         <select id="policyType" style="margin-top:8px;" onchange="calc()"><option value="limited">Cheklangan</option><option value="unlimited">VIP (Cheklanmagan)</option></select>
         <div class="result" id="res">192 000 so'm</div>
         
-        <p style="font-size: 11px; text-align: center; margin-top: 10px; color: #666;">O'zingizga tegishli bo'limni tanlang va hujjatlarni yuboring:</p>
+        <p style="font-size: 11px; text-align: center; margin-top: 12px; color: #555; font-weight: bold;">
+            Polis sotib olish uchun o'zingizga tegishli bo'limni tanlang va hujjatlarni yuboring:
+        </p>
         <a href="https://t.me/bobur_uzb1" class="btn btn-blue">📄 HUJJATLARNI YUBORISH</a>
     </div>
 
@@ -47,35 +49,33 @@
         <h3>2. YTH va Evroprotokol</h3>
         <button class="accordion">YTHda nima qilish kerak? <span>+</span></button>
         <div class="panel">
-            <div class="step-box">🧘 <b>Tinchlaning!</b> Xavotirga tushmang.</div>
+            <div class="step-box">🧘 <b>Tinchlaning!</b> O'zingizni qo'lga oling.</div>
             <div class="step-box">⚠️ Ogohlantiruvchi chiroqlarni yoqing.</div>
             <div class="step-box">🚷 Yo'lovchilarni xavfsiz joyga o'tkazing.</div>
-            <div class="step-box">📸 Holatni <b>uzoqdan</b>, 4 tomondan rasm/videoga oling. Davlat raqami ko'rinsin.</div>
         </div>
 
         <button class="accordion">Evroprotokol shartlari <span>+</span></button>
-        <div class="panel" style="padding-bottom: 10px;">
+        <div class="panel" style="padding-bottom:10px;">
             <div class="check-item"><input type="checkbox" class="euro-chk"> Jarohatlanganlar yo'q</div>
             <div class="check-item"><input type="checkbox" class="euro-chk"> Faqat 2 ta mashina ishtirokchi</div>
             <div class="check-item"><input type="checkbox" class="euro-chk"> Aybdor aniq va kelishilgan</div>
             <div class="check-item"><input type="checkbox" class="euro-chk"> Sug'urta muddati o'tmagan</div>
-            <div class="check-item"><input type="checkbox" class="euro-chk"> Mashinalar joyidan siljitilmagan</div>
-            <button class="btn btn-green" onclick="checkEuro()" style="padding: 8px; font-size: 13px;">Tekshirish</button>
+            <button class="btn btn-green" onclick="checkEuro()" style="padding: 10px; font-size: 13px;">Tekshirish</button>
         </div>
     </div>
 
     <div class="section">
         <h3>3. Zararni Baholash</h3>
         <div class="step-box" style="border-left-color: #28a745;">
-            <b>Tavsiya:</b> To'g'ri baholash uchun mashina texpasporti ва ЙТҲ жойидан камида 5-6 та сифатли расм юборинг.
+            <b>Tavsiya:</b> To'g'ri baholash uchun texpasport, holatni uzoqdan 4 tomondan (davlat raqami bilan) va zarar yetgan joylarni yaqindan ko'proq rasm/videoga olib yuboring.
         </div>
         <a href="https://t.me/bobur_uzb1" class="btn btn-green">📸 RASMLARNI YUBORISH</a>
     </div>
 
     <div class="section">
         <h3>4. Tezkor Aloqa</h3>
-        <a href="tel:+998881912020" onclick="window.location.href='tel:+998881912020'; return false;" class="btn btn-phone">📞 88 191 20 20</a>
-        <a href="tel:+998335592020" onclick="window.location.href='tel:+998335592020'; return false;" class="btn btn-phone">📞 33 559 20 20</a>
+        <a href="tel:+998881912020" data-rel="external" onclick="window.location.href='tel:+998881912020'; return true;" class="btn btn-phone">📞 88 191 20 20</a>
+        <a href="tel:+998335592020" data-rel="external" onclick="window.location.href='tel:+998335592020'; return true;" class="btn btn-phone">📞 33 559 20 20</a>
     </div>
 </div>
 
@@ -96,23 +96,17 @@
     function checkEuro() {
         const chks = document.querySelectorAll('.euro-chk');
         const allChecked = Array.from(chks).every(c => c.checked);
-        if(allChecked) alert("Evroprotokol tuzish mumkin! Rasmlarni bizga yuboring.");
-        else alert("Shartlar mos kelmadi. GAI chaqirishingiz yoki bizga qo'ng'iroq qilishingiz shart.");
+        if(allChecked) alert("Evroprotokol mumkin! Bizga yozing.");
+        else alert("Shartlar mos kelmadi.");
     }
 
-    // Akkordeon funksiyasi
     var acc = document.getElementsByClassName("accordion");
     for (var i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-                this.querySelector("span").innerText = "+";
-            } else {
-                panel.style.display = "block";
-                this.querySelector("span").innerText = "-";
-            }
+            panel.style.display = (panel.style.display === "block") ? "none" : "block";
+            this.querySelector("span").innerText = (panel.style.display === "block") ? "-" : "+";
         });
     }
 </script>
