@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=yes">
     <title>Avto Hamroh Plus</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 10px; margin: 0; }
@@ -19,12 +20,11 @@
         .btn-blue { background: #0088cc; box-shadow: 0 4px #006699; }
         .btn-phone { background: #1a73e8; box-shadow: 0 4px #155cb0; margin-bottom: 5px; }
         .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin-top: 6px; }
-        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 6px; border-left: 4px solid #d93025; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 6px; border-left: 4px solid #d93025; }
         .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 12px; width: 100%; border: none; text-align: left; outline: none; font-size: 14px; transition: 0.4s; border-radius: 8px; margin-top: 5px; font-weight: bold; display: flex; justify-content: space-between; }
         .panel { padding: 0 10px; background-color: white; display: none; overflow: hidden; border-radius: 0 0 8px 8px; border: 1px solid #eee; }
         .fine-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11px; }
         .fine-table th, .fine-table td { border: 1px solid #ddd; padding: 6px; text-align: left; }
-        .brv-box { background: #fff3cd; padding: 10px; border-radius: 8px; font-size: 12px; border-left: 4px solid #ffc107; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -47,7 +47,7 @@
         <div class="check-item"><input type="checkbox" id="c3"> Aybdor kelishilgan</div>
         <div class="check-item"><input type="checkbox" id="c4"> Sug'urta muddati bor</div>
         <div class="check-item"><input type="checkbox" id="c5"> Joyidan siljitilmagan</div>
-        <button class="btn btn-green" onclick="checkEuro()">Imkoniyatni tekshirish</button>
+        <button class="btn btn-green" onclick="checkEuro()">Tekshirish</button>
     </div>
 
     <div class="section">
@@ -55,12 +55,11 @@
         <div class="step-box">🧘 <b>Tinchlaning!</b> O'zingizni qo'lga oling.</div>
         <div class="step-box">⚠️ Ogohlantiruvchi chiroqlarni yoqing.</div>
         <div class="step-box">🚷 Yo'lovchilarni xavfsiz joyga o'tkazing.</div>
-        <div class="step-box">📸 Holatni uzoqdan va 4 tomondan rasmga oling. Davlat raqami aniq bo'lsin.</div>
+        <div class="step-box">📸 Holatni uzoqdan va 4 tomondan rasmga oling.</div>
     </div>
 
     <div class="section">
         <h3>4. Jarimalar va BRV (2026)</h3>
-        <div class="brv-box"><b>BHM (BRV) - 412 000 so'm.</b></div>
         <button class="accordion">Asosiy jarimalar <span>+</span></button>
         <div class="panel">
             <table class="fine-table">
@@ -75,16 +74,16 @@
             <table class="fine-table">
                 <tr><td>+20 km/s</td><td>412 000</td></tr>
                 <tr><td>20-40 km/s</td><td>2 060 000</td></tr>
-                <tr><td>40+ km/s</td><td>3 708 000</td></tr>
             </table>
         </div>
     </div>
 
     <div class="section">
-        <h3>5. Baholash ва Bog'lanish</h3>
-        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">Telegram: @bobur_uzb1</a>
-        <a href="tel:+998881912020" class="btn btn-phone">📞 Қўнғироқ: 88 191 20 20</a>
-        <a href="tel:+998335592020" class="btn btn-phone">📞 Қўнғироқ: 33 559 20 20</a>
+        <h3>5. Baholash va Bog'lanish</h3>
+        <a href="https://t.me/bobur_uzb1" class="btn btn-green">📸 RASM VA VIDEO YUBORISH</a>
+        <a href="https://t.me/bobur_uzb1" class="btn btn-blue">💬 Telegram: @bobur_uzb1</a>
+        <a href="tel:+998881912020" class="btn btn-phone">📞 Aloqa: 88 191 20 20</a>
+        <a href="tel:+998335592020" class="btn btn-phone">📞 Aloqa: 33 559 20 20</a>
     </div>
 </div>
 
@@ -106,7 +105,7 @@
         const ids = ['c1','c2','c3','c4','c5'];
         const allChecked = ids.every(id => document.getElementById(id).checked);
         if(allChecked) alert("Yevroprotokol mumkin!");
-        else alert("Shartlar mos kelmadi. Bizga qo'ng'iroq qiling.");
+        else alert("Shartlar mos kelmadi.");
     }
 
     var acc = document.getElementsByClassName("accordion");
