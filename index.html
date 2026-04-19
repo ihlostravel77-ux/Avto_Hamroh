@@ -4,27 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Avto Hamroh Plus</title>
     <style>
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 10px; margin: 0; }
-        .container { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
-        h3 { color: #1a73e8; text-align: center; margin: 8px 0; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .section { background: #f8f9fa; padding: 12px; border-radius: 10px; margin-bottom: 12px; border: 1px solid #eef0f2; }
-        .emergency { background: #d93025; color: white; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 10px; font-weight: bold; font-size: 14px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 5px; margin: 0; }
+        .container { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 380px; }
         
-        select { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ddd; font-size: 15px; background: white; -webkit-appearance: none; }
-        .result { background: #e8f0fe; padding: 12px; border-radius: 10px; text-align: center; font-size: 22px; font-weight: bold; color: #1a73e8; margin-top: 5px; border: 2px solid #1a73e8; }
+        h3 { color: #1a73e8; text-align: center; margin: 5px 0; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 3px; }
         
-        .btn { color: white; border: none; width: 100%; padding: 14px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-top: 10px; display: block; text-decoration: none; text-align: center; -webkit-tap-highlight-color: transparent; }
-        .btn-green { background: #28a745; box-shadow: 0 3px #1e7e34; }
-        .btn-blue { background: #0088cc; box-shadow: 0 3px #006699; }
-        .btn-phone { background: #1a73e8; box-shadow: 0 3px #155cb0; }
+        .section { background: #f8f9fa; padding: 8px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #eef0f2; }
         
-        .step-box { font-size: 12px; background: #fff; padding: 10px; border-radius: 8px; margin-top: 8px; border-left: 4px solid #d93025; line-height: 1.4; color: #333; }
-        .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 12px; width: 100%; border: none; text-align: left; outline: none; font-size: 14px; transition: 0.4s; border-radius: 8px; margin-top: 5px; font-weight: bold; display: flex; justify-content: space-between; }
-        .panel { padding: 0 10px; background-color: white; display: none; overflow: hidden; border-radius: 0 0 8px 8px; border: 1px solid #eee; }
-        .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; margin: 8px 0; }
+        .emergency { background: #d93025; color: white; padding: 6px; border-radius: 6px; text-align: center; margin-bottom: 8px; font-weight: bold; font-size: 12px; }
+        
+        select { width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; border: 1px solid #ddd; font-size: 14px; background: white; }
+        
+        /* Narx yozilgan qatorni ixchamlashtirish */
+        .result { background: #e8f0fe; padding: 8px; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; color: #1a73e8; margin-top: 4px; border: 1.5px solid #1a73e8; }
+        
+        /* Tugmalarni kichraytirish */
+        .btn { color: white; border: none; width: 100%; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; margin-top: 6px; display: block; text-decoration: none; text-align: center; }
+        .btn-green { background: #28a745; }
+        .btn-blue { background: #0088cc; }
+        .btn-phone { background: #1a73e8; }
+        
+        .step-box { font-size: 11px; background: #fff; padding: 8px; border-radius: 6px; margin-top: 5px; border-left: 3px solid #d93025; line-height: 1.3; color: #333; }
+        
+        .accordion { background-color: #eee; color: #444; cursor: pointer; padding: 10px; width: 100%; border: none; text-align: left; font-size: 13px; transition: 0.4s; border-radius: 6px; margin-top: 4px; font-weight: bold; display: flex; justify-content: space-between; }
+        .panel { padding: 0 8px; background-color: white; display: none; overflow: hidden; border-radius: 0 0 6px 6px; border: 1px solid #eee; }
+        
+        .check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin: 6px 0; }
+        input[type="checkbox"] { transform: scale(0.9); }
     </style>
 </head>
 <body>
@@ -35,13 +43,11 @@
     <div class="section">
         <h3>1. Sug'urta Kalkulyatori</h3>
         <select id="carType" onchange="calc()"><option value="yengil">Yengil avtomobil</option><option value="yuk">Yuk avtomobili</option><option value="avtobus">Avtobus</option><option value="maxsus">Maxsus texnika</option></select>
-        <select id="region" style="margin-top:8px;" onchange="calc()"><option value="toshkent">Toshkent sh. va viloyati</option><option value="viloyat">Boshqa viloyatlar</option></select>
-        <select id="policyType" style="margin-top:8px;" onchange="calc()"><option value="limited">Cheklangan</option><option value="unlimited">VIP (Cheklanmagan)</option></select>
+        <div style="display: flex; gap: 5px; margin-top: 5px;">
+            <select id="region" onchange="calc()"><option value="toshkent">Toshkent</option><option value="viloyat">Viloyat</option></select>
+            <select id="policyType" onchange="calc()"><option value="limited">Oddiy</option><option value="unlimited">VIP</option></select>
+        </div>
         <div class="result" id="res">192 000 so'm</div>
-        
-        <p style="font-size: 11px; text-align: center; margin-top: 12px; color: #555; font-weight: bold;">
-            Polis sotib olish uchun o'zingizga tegishli bo'limni tanlang va hujjatlarni yuboring:
-        </p>
         <a href="https://t.me/bobur_uzb1" class="btn btn-blue">📄 HUJJATLARNI YUBORISH</a>
     </div>
 
@@ -52,30 +58,33 @@
             <div class="step-box">🧘 <b>Tinchlaning!</b> O'zingizni qo'lga oling.</div>
             <div class="step-box">⚠️ Ogohlantiruvchi chiroqlarni yoqing.</div>
             <div class="step-box">🚷 Yo'lovchilarni xavfsiz joyga o'tkazing.</div>
+            <div class="step-box">📸 4 tomondan (raqam bilan) rasmga oling.</div>
         </div>
 
         <button class="accordion">Evroprotokol shartlari <span>+</span></button>
-        <div class="panel" style="padding-bottom:10px;">
+        <div class="panel" style="padding-bottom:8px;">
             <div class="check-item"><input type="checkbox" class="euro-chk"> Jarohatlanganlar yo'q</div>
-            <div class="check-item"><input type="checkbox" class="euro-chk"> Faqat 2 ta mashina ishtirokchi</div>
-            <div class="check-item"><input type="checkbox" class="euro-chk"> Aybdor aniq va kelishilgan</div>
+            <div class="check-item"><input type="checkbox" class="euro-chk"> Faqat 2 ta mashina</div>
+            <div class="check-item"><input type="checkbox" class="euro-chk"> Aybdor aniq</div>
             <div class="check-item"><input type="checkbox" class="euro-chk"> Sug'urta muddati o'tmagan</div>
-            <button class="btn btn-green" onclick="checkEuro()" style="padding: 10px; font-size: 13px;">Tekshirish</button>
+            <button class="btn btn-green" onclick="checkEuro()" style="padding: 6px; font-size: 11px; margin-top: 5px;">Tekshirish</button>
         </div>
     </div>
 
     <div class="section">
         <h3>3. Zararni Baholash</h3>
-        <div class="step-box" style="border-left-color: #28a745;">
-            <b>Tavsiya:</b> To'g'ri baholash uchun texpasport, holatni uzoqdan 4 tomondan (davlat raqami bilan) va zarar yetgan joylarni yaqindan ko'proq rasm/videoga olib yuboring.
+        <div class="step-box" style="border-left-color: #28a745; margin-bottom: 5px;">
+            <b>Tavsiya:</b> Texpasport, uzoqdan 4 tomon va zarar joylarni yaqindan rasm/video yuboring.
         </div>
         <a href="https://t.me/bobur_uzb1" class="btn btn-green">📸 RASMLARNI YUBORISH</a>
     </div>
 
     <div class="section">
         <h3>4. Tezkor Aloqa</h3>
-        <a href="tel:+998881912020" data-rel="external" onclick="window.location.href='tel:+998881912020'; return true;" class="btn btn-phone">📞 88 191 20 20</a>
-        <a href="tel:+998335592020" data-rel="external" onclick="window.location.href='tel:+998335592020'; return true;" class="btn btn-phone">📞 33 559 20 20</a>
+        <div style="display: flex; gap: 5px;">
+            <a href="tel:+998881912020" class="btn btn-phone">📞 88 191 20 20</a>
+            <a href="tel:+998335592020" class="btn btn-phone">📞 33 559 20 20</a>
+        </div>
     </div>
 </div>
 
@@ -96,7 +105,7 @@
     function checkEuro() {
         const chks = document.querySelectorAll('.euro-chk');
         const allChecked = Array.from(chks).every(c => c.checked);
-        if(allChecked) alert("Evroprotokol mumkin! Bizga yozing.");
+        if(allChecked) alert("Evroprotokol mumkin!");
         else alert("Shartlar mos kelmadi.");
     }
 
@@ -110,6 +119,5 @@
         });
     }
 </script>
-
 </body>
 </html>
